@@ -1,0 +1,62 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11/05/2019, 17:00:15
+    Author     : raquel
+*/
+.main, .main-login {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+}
+
+.top-blue-line {
+	background: url(../img/cabecalho_login.png) repeat-x;
+	height: 5px;
+}
+
+.footer {
+	height: 82px;
+}
+
+.footer-login {
+	background: url(../img/footer.png) repeat-x;
+	color: white;
+	line-height: 15px;
+}
+
+.pt80 {
+	padding-top: 400px;
+}
+
+.btn {
+	font-size: 14px;
+	background-color: rgb(221, 221, 221);
+}
+
+.btn-primary {
+	background-color: #428bca;
+}
+
+.right-button {
+	margin-right: 31px;
+	margin-top: -2px;
+	float: right;
+}
+
+.box {
+	display: inline-table;
+}
+
+.boxed-table {
+	width: 95%;
+	margin: auto;
+	margin-bottom: 25px;
+}
+
+.title {
+	font-size: 22px;
+}

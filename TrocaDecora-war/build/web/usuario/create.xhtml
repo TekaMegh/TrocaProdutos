@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    
+        <f:view contentType="text/html">
+            <ui:include src="/resources/templates/header.xhtml" />
+            <h:body>
+            <h:form>
+                <h1>teste</h1>
+                <h1><h:outputText value="Lista de Clientes"/></h1>
+                <p:dataTable var="cliente" value="#{usuarioBean.listaUsuarios}">
+                   <p:column headerText="Id">
+                      <h:outputText value="#{cliente.id}" />
+                   </p:column>
+                   <p:column headerText="Nome">
+                      <h:outputText value="#{cliente.nome}" /> 
+                   </p:column>
+                   <p:column headerText="E-mail">
+                      <h:outputText value="#{cliente.email}" />
+                   </p:column>
+                </p:dataTable>
+            </h:form>
+            <ui:insert name="body" />
+            </h:body>
+            <ui:include src="/resources/templates/footer.xhtml" />
+        </f:view>
+    
+    
+</html>
