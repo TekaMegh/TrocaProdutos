@@ -8,11 +8,8 @@ package jsf;
 
 import java.util.List;
 import javax.ejb.EJB;
-import javax.ejb.SessionBean;
-import javax.ejb.Stateful;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import usuario.Usuario;
 import usuario.UsuarioFachada;
 
@@ -20,13 +17,12 @@ import usuario.UsuarioFachada;
  *
  * @author raquel
  */
-
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class UsuarioBean {
     @EJB
     private UsuarioFachada usuarioFachada;
-
+    
     private Usuario logado;
     private Usuario novo;
     
@@ -39,11 +35,11 @@ public class UsuarioBean {
     public List<Usuario> getListaUsuarios() {
         return usuarioFachada.getListaUsuarios();
     }
-
-    public void logout() {
-        logado = new Usuario();
-    }
     
+    public void logout() {
+        this.logado = new Usuario();
+    }
+
     public Usuario getLogado() {
         return logado;
     }

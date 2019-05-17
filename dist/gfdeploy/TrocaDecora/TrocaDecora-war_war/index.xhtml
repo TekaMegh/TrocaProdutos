@@ -2,34 +2,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>TrocaDecor</title>
-        
-        <link href="${request.contextPath}/resources/css/style.css" rel="stylesheet"></link>
-    </h:head>
-    <h:body>
-        <f:view>
+    
+    
+        <f:view contentType="text/html">
+            <ui:include src="/resources/templates/header.xhtml" />
+            <h:body>
             <h:form>
-                <div id="main_login" class="main-login">
-                    <div class="top-blue-line"></div>
-                    Troca Decor
-
-                    <h:panelGroup rendered="#{usuarioBean.logado != null}">
-                        <h:outputLink id="cadastrar" value="${request.contextPath}/usuario/create.xhtml"
-                            styleClass="right-button" target="_blank">Cadastrar</h:outputLink>
-                        <h:outputLink id="login" value="${request.contextPath}/usuario/login.xhtml"
-                            styleClass="right-button" target="_blank">Entrar</h:outputLink>
-                    </h:panelGroup>
-                    <p:menuButton value="menu" styleClass="btn btn-primary right-button" rendered="#{usuarioBean.logado == null}">
-                        <p:menuitem value="Sair" actionListener="#{usuarioBean.logout()}" update="@form"/>
-                        <p:menuitem value="Cadastrar Produto" url="${request.contextPath}/produto_troca/create.xhtml" />
-                        <p:menuitem value="Chat" url="${request.contextPath}/conversa/conversas.xhtml" />
-                    </p:menuButton>
-                </div>
+                <h1>teste</h1>
+                <h1><h:outputText value="Lista de Clientes"/></h1>
+                <p:dataTable var="cliente" value="#{usuarioBean.listaUsuarios}">
+                   <p:column headerText="Id">
+                      <h:outputText value="#{cliente.id}" />
+                   </p:column>
+                   <p:column headerText="Nome">
+                      <h:outputText value="#{cliente.nome}" /> 
+                   </p:column>
+                   <p:column headerText="E-mail">
+                      <h:outputText value="#{cliente.email}" />
+                   </p:column>
+                </p:dataTable>
             </h:form>
+            <ui:insert name="body" />
+            </h:body>
+            <ui:include src="/resources/templates/footer.xhtml" />
         </f:view>
-    </h:body>
+    
+    
 </html>

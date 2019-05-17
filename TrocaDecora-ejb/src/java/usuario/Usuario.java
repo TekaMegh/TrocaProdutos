@@ -6,17 +6,24 @@
 
 package usuario;
 
+import chat.Conversa;
+import chat.Mensagem;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import produto_troca.ProdutoTroca;
 
 /**
  *
@@ -36,6 +43,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuario.findByEstado", query = "SELECT u FROM Usuario u WHERE u.estado = :estado"),
     @NamedQuery(name = "Usuario.findByBairro", query = "SELECT u FROM Usuario u WHERE u.bairro = :bairro")})
 public class Usuario implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private Collection<Mensagem> mensagemCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario2")
+    private Collection<Conversa> conversaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario1")
+    private Collection<Conversa> conversaCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private Collection<ProdutoTroca> produtoTrocaCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -184,6 +199,42 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "usuario.Usuario[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<ProdutoTroca> getProdutoTrocaCollection() {
+        return produtoTrocaCollection;
+    }
+
+    public void setProdutoTrocaCollection(Collection<ProdutoTroca> produtoTrocaCollection) {
+        this.produtoTrocaCollection = produtoTrocaCollection;
+    }
+
+    @XmlTransient
+    public Collection<Mensagem> getMensagemCollection() {
+        return mensagemCollection;
+    }
+
+    public void setMensagemCollection(Collection<Mensagem> mensagemCollection) {
+        this.mensagemCollection = mensagemCollection;
+    }
+
+    @XmlTransient
+    public Collection<Conversa> getConversaCollection() {
+        return conversaCollection;
+    }
+
+    public void setConversaCollection(Collection<Conversa> conversaCollection) {
+        this.conversaCollection = conversaCollection;
+    }
+
+    @XmlTransient
+    public Collection<Conversa> getConversaCollection1() {
+        return conversaCollection1;
+    }
+
+    public void setConversaCollection1(Collection<Conversa> conversaCollection1) {
+        this.conversaCollection1 = conversaCollection1;
     }
     
 }

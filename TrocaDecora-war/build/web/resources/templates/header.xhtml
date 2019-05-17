@@ -19,9 +19,9 @@
 
                     <h:panelGroup rendered="#{usuarioBean.logado != null}">
                         <h:outputLink id="cadastrar" value="${request.contextPath}/usuario/create.xhtml"
-                            styleClass="right-button" target="_blank">Cadastrar</h:outputLink>
+                            styleClass="right-button" >Cadastrar</h:outputLink>
                         <h:outputLink id="login" value="${request.contextPath}/usuario/login.xhtml"
-                            styleClass="right-button" target="_blank">Entrar</h:outputLink>
+                            styleClass="right-button" >Entrar</h:outputLink>
                     </h:panelGroup>
                     <p:menuButton value="menu" styleClass="btn btn-primary right-button" rendered="#{usuarioBean.logado == null}">
                         <p:menuitem value="Sair" actionListener="#{usuarioBean.logout()}" update="@form"/>

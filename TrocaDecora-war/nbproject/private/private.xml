@@ -4,9 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/raquel/NetBeansProjects/TrocaDecora/TrocaDecora-war/web/WEB-INF/web.xml</file>
-            <file>file:/home/raquel/NetBeansProjects/TrocaDecora/TrocaDecora-war/web/usuario/create.xhtml</file>
             <file>file:/home/raquel/NetBeansProjects/TrocaDecora/TrocaDecora-war/src/java/jsf/UsuarioBean.java</file>
             <file>file:/home/raquel/NetBeansProjects/TrocaDecora/TrocaDecora-war/web/index.xhtml</file>
+            <file>file:/home/raquel/NetBeansProjects/TrocaDecora/TrocaDecora-war/src/conf/MANIFEST.MF</file>
             <file>file:/home/raquel/NetBeansProjects/TrocaDecora/TrocaDecora-war/web/resources/templates/header.xhtml</file>
         </group>
     </open-files>
