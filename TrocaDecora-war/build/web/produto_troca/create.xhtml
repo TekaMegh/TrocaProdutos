@@ -1,12 +1,50 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+        
+<f:view contentType="text/html">
+    <ui:include src="/resources/templates/header.xhtml" />
     <h:body>
-        Criar tela de cadastro de produtos
+    <h:form>
+        <h1><h:outputText value="Cadastrar Produto"/></h1>
+        <h:panelGroup id="nomePanel" layout="block" styleClass="ptb10">
+            <p:inputText id="nome" value="#{produtoTrocaBean.produtoTroca.nome}" placeholder="Nome do Produto*"
+                title="Nome do Produto" required="true"/>
+        </h:panelGroup>
+        <h:panelGroup id="categoriaPanel" layout="block" styleClass="ptb10">
+            <p:selectOneMenu id="categoria" value="#{produtoTrocaBean.produtoTroca.categoria}" 
+                style="width:230px" required="true">
+                <f:selectItem itemLabel="Selecione a Categoria*" itemValue="" />
+                <f:selectItem itemLabel="Banheiro" itemValue="BANHEIRO" />
+                <f:selectItem itemLabel="Cozinha" itemValue="COZINHA" />
+                <f:selectItem itemLabel="Infantil" itemValue="INFANTIL" />
+                <f:selectItem itemLabel="Jardim" itemValue="JARDIM" />
+                <f:selectItem itemLabel="Quarto" itemValue="QUARTO" />
+                <f:selectItem itemLabel="Sala" itemValue="SALA" />
+                <f:selectItem itemLabel="Indefinido" itemValue="INDEFINIDO" />
+            </p:selectOneMenu>
+        </h:panelGroup>
+        <h:panelGroup id="descricaoProduto" layout="block" styleClass="ptb10">
+            <p:inputTextarea style="width:230px" placeholder="Descrição" 
+                title="Descrição" value="#{produtoTrocaBean.produtoTroca.observacoes}" />
+        </h:panelGroup>
+        
+        <h:panelGroup id="formActionPanel" layout="block" styleClass="row"
+            style="margin-top:20px;">
+            <p:commandButton id="saveButton" value="Salvar" action="#{produtoTrocaBean.save()}" 
+                    update="@this" process="@this" styleClass="btn"/>
+            <f:verbatim>&#160;&#160;</f:verbatim>
+            <p:commandButton id="cancelButton" value="Cancelar" styleClass="btn"
+                immediate="true" process="@this" update="@this"
+                action="#{usuarioBean.cancelarRedirect}" />
+        </h:panelGroup>
+    </h:form>
     </h:body>
+    <ui:include src="/resources/templates/footer.xhtml" />
+</f:view>
 </html>
 

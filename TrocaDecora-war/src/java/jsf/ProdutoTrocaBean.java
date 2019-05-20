@@ -6,6 +6,7 @@
 
 package jsf;
 
+import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -23,6 +24,8 @@ public class ProdutoTrocaBean {
     @EJB
     private ProdutoFachada produtoFachada;
 
+    private ProdutoTroca produtoTroca;
+    
     /**
      * Creates a new instance of ProdutoTrocaBean
      */
@@ -31,5 +34,21 @@ public class ProdutoTrocaBean {
     
     public List<ProdutoTroca> getListaProdutos() {
         return produtoFachada.getListaProdutosTroca();
+    }
+
+    public void save() {
+        
+    }
+    
+    public String cadastrarRedirect() throws IOException {
+        return "/produto_troca/create.xhtml?faces-redirect=true";
+    }
+    
+    public ProdutoTroca getProdutoTroca() {
+        return produtoTroca;
+    }
+
+    public void setProdutoTroca(ProdutoTroca produtoTroca) {
+        this.produtoTroca = produtoTroca;
     }
 }

@@ -5,30 +5,51 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
-    
-        <f:view contentType="text/html">
-            <ui:include src="/resources/templates/header.xhtml" />
-            <h:body>
-            <h:form>
-                <h1>teste</h1>
-                <h1><h:outputText value="Lista de Clientes"/></h1>
-                <p:dataTable var="cliente" value="#{usuarioBean.listaUsuarios}">
-                   <p:column headerText="Id">
-                      <h:outputText value="#{cliente.id}" />
-                   </p:column>
-                   <p:column headerText="Nome">
-                      <h:outputText value="#{cliente.nome}" /> 
-                   </p:column>
-                   <p:column headerText="E-mail">
-                      <h:outputText value="#{cliente.email}" />
-                   </p:column>
-                </p:dataTable>
-            </h:form>
-            <ui:insert name="body" />
-            </h:body>
-            <ui:include src="/resources/templates/footer.xhtml" />
-        </f:view>
-    
-    
+        
+<f:view contentType="text/html">
+    <ui:include src="/resources/templates/header.xhtml" />
+    <h:body>
+    <h:form>
+        <h1><h:outputText value="Cadastrar Usuário"/></h1>
+        <h:panelGroup id="nomePanel" layout="block" styleClass="ptb10">
+            <p:inputText id="nome" value="#{usuarioBean.novo.nome}" placeholder="Nome"
+                title="Nome" required="true"/>
+        </h:panelGroup>
+        <h:panelGroup id="emailPanel" layout="block" styleClass="ptb10">
+            <p:inputText id="email" value="#{usuarioBean.novo.email}" placeholder="Email"
+                title="Email" required="true"/>
+        </h:panelGroup>
+        <h:panelGroup id="telefonePanel" layout="block" styleClass="ptb10">
+            <p:inputMask id="telefone" value="#{usuarioBean.novo.telefone}" placeholder="Telefone"
+                title="Telefone" required="true" mask="(99) 9 9999-9999"/>
+        </h:panelGroup>
+        <h:panelGroup id="bairroPanel" layout="block" styleClass="ptb10">
+            <p:inputText id="bairro" value="#{usuarioBean.novo.bairro}" placeholder="Bairro"
+                title="Bairro" required="true"/>
+        </h:panelGroup>
+        <h:panelGroup id="cidadePanel" layout="block" styleClass="ptb10">
+            <p:inputText id="cidade" value="#{usuarioBean.novo.cidade}" placeholder="Cidade"
+                title="Cidade" required="true"/>
+        </h:panelGroup>
+        <h:panelGroup id="estadoPanel" layout="block" styleClass="ptb10">
+            <p:inputText id="estado" value="#{usuarioBean.novo.estado}" placeholder="Estado"
+                title="Estado" required="true"/>
+        </h:panelGroup>
+        <h:panelGroup id="senhaPanel" layout="block" styleClass="ptb10">
+            <p:password id="senha" value="#{usuarioBean.novo.senha}" feedback="true" 
+                placeholder="Senha" title="Senha" required="true"/>
+        </h:panelGroup>
+        <h:panelGroup id="formActionPanel" layout="block" styleClass="row"
+            style="margin-top:20px;">
+            <p:commandButton id="saveButton" value="Salvar" action="#{usuarioBean.save()}" 
+                    update="@this" process="@this" styleClass="btn"/>
+            <f:verbatim>&#160;&#160;</f:verbatim>
+            <p:commandButton id="cancelButton" value="Cancelar" styleClass="btn"
+                    immediate="true" process="@this" update="@this"
+                    action="#{usuarioBean.cancelarRedirect}" />
+        </h:panelGroup>
+    </h:form>
+    </h:body>
+    <ui:include src="/resources/templates/footer.xhtml" />
+</f:view>
 </html>
