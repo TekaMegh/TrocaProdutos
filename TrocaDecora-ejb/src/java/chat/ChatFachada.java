@@ -32,7 +32,7 @@ public class ChatFachada {
     
     // Metodo que retorna a lista de conversa armazenada na tabela Conversas
     public List<chat.Conversa> getListaConversas() {
-        Query query = em.createNamedQuery("Conversas.findAll");
+        Query query = em.createNamedQuery("Conversa.findAll");
         return query.getResultList();
     }
 }

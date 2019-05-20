@@ -5,25 +5,37 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-        
-<f:view contentType="text/html">
-    <ui:include src="/resources/templates/header.xhtml" />
-    <h:body>
-    <h:form>
-        <h1><h:outputText value="Chat"/></h1>
-        
-        <h:panelGroup id="formActionPanel" layout="block" styleClass="row"
-            style="margin-top:20px;">
-            <p:commandButton id="saveButton" value="Salvar" action="#{usuarioBean.save()}" 
-                    update="@this" process="@this" styleClass="btn"/>
-            <f:verbatim>&#160;&#160;</f:verbatim>
-            <p:commandButton id="cancelButton" value="Cancelar" styleClass="btn"
-                    immediate="true" process="@this" update="@this"
-                    action="#{usuarioBean.cancelarRedirect}" />
-        </h:panelGroup>
-    </h:form>
-    </h:body>
-    <ui:include src="/resources/templates/footer.xhtml" />
-</f:view>
+
+    <f:view contentType="text/html">
+        <ui:include src="/resources/templates/header.xhtml" />
+        <h:body>
+            <h:form>
+                <h1><h:outputText value="Chat"/></h1>
+                <p:scrollPanel mode="native" style="width:100%;max-height:300px;">
+                <p:dataTable  var="conversa" value="#{chatBean.getListaConversas()}" style="width:100%;height:100%" >
+                    <p:column headerText="Id">
+                      <h:outputText value="#{conversa.id}" />
+                    </p:column>
+                    <p:column headerText="produto">
+                        <h:outputText value="#{conversa.idProduto.nome}" />
+                    </p:column>
+                    
+
+                </p:dataTable >
+                </p:scrollPanel>
+
+                <h:panelGroup id="formActionPanel" layout="block" styleClass="row"
+                              style="margin-top:20px;">
+                    <p:commandButton id="saveButton" value="Salvar" action="#{usuarioBean.save()}" 
+                                     update="@this" process="@this" styleClass="btn"/>
+                    <f:verbatim>&#160;&#160;</f:verbatim>
+                    <p:commandButton id="cancelButton" value="Cancelar" styleClass="btn"
+                                     immediate="true" process="@this" update="@this"
+                                     action="#{usuarioBean.cancelarRedirect}" />
+                </h:panelGroup>
+            </h:form>
+        </h:body>
+        <ui:include src="/resources/templates/footer.xhtml" />
+    </f:view>
 </html>
 
