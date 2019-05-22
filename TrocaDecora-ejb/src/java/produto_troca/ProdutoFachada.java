@@ -35,4 +35,10 @@ public class ProdutoFachada {
         Query query = em.createNamedQuery("ProdutoTroca.findAll");
         return query.getResultList();
     }
+    
+    public List<produto_troca.ProdutoTroca> getProdutosByNome(String nome) {
+        nome = "%"+nome+"%";
+        Query query = em.createNamedQuery("ProdutoTroca.findByNome").setParameter("nome", nome);
+        return query.getResultList();
+    }
 }
