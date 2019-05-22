@@ -39,7 +39,7 @@ import usuario.Usuario;
 @Table(name = "PRODUTO_TROCA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProdutoTroca.findAll", query = "SELECT p FROM ProdutoTroca p"),
+    @NamedQuery(name = "ProdutoTroca.findAll", query = "SELECT p FROM ProdutoTroca p order by p.id desc"),
     @NamedQuery(name = "ProdutoTroca.findById", query = "SELECT p FROM ProdutoTroca p WHERE p.id = :id"),
     @NamedQuery(name = "ProdutoTroca.findByDataCriacao", query = "SELECT p FROM ProdutoTroca p WHERE p.dataCriacao = :dataCriacao"),
     @NamedQuery(name = "ProdutoTroca.findByNome", query = "SELECT p FROM ProdutoTroca p WHERE p.nome = :nome"),
@@ -55,8 +55,6 @@ import usuario.Usuario;
     @NamedQuery(name = "ProdutoTroca.findByObservacoes", query = "SELECT p FROM ProdutoTroca p WHERE p.observacoes = :observacoes"),
     @NamedQuery(name = "ProdutoTroca.findByProdutosDesejados", query = "SELECT p FROM ProdutoTroca p WHERE p.produtosDesejados = :produtosDesejados")})
 public class ProdutoTroca implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProduto")
-    private Collection<Conversa> conversaCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -74,7 +72,6 @@ public class ProdutoTroca implements Serializable {
     @Column(name = "NOME")
     private String nome;
     @Basic(optional = false)
-    @NotNull
     @Lob
     @Column(name = "FOTO")
     private Serializable foto;
@@ -283,15 +280,6 @@ public class ProdutoTroca implements Serializable {
     @Override
     public String toString() {
         return "produto_troca.ProdutoTroca[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Conversa> getConversaCollection() {
-        return conversaCollection;
-    }
-
-    public void setConversaCollection(Collection<Conversa> conversaCollection) {
-        this.conversaCollection = conversaCollection;
     }
     
 }

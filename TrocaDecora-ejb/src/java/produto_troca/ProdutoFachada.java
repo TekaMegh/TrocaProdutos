@@ -35,4 +35,13 @@ public class ProdutoFachada {
         Query query = em.createNamedQuery("ProdutoTroca.findAll");
         return query.getResultList();
     }
+    
+    public Integer getIdUltimoProduto() {
+        List<ProdutoTroca> produtos = em.createNamedQuery("ProdutoTroca.findAll").getResultList();
+        if(produtos.isEmpty()) {
+            return 1;
+        } else {
+            return produtos.get(0).getId();
+        }
+    }
 }

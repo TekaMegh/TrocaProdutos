@@ -29,19 +29,60 @@
             </p:selectOneMenu>
         </h:panelGroup>
         <h:panelGroup id="pesoPanel" layout="block" styleClass="ptb10">
-            <p:inputText id="preco" value="#{produtoTrocaBean.produtoTroca.peso}" >
-                <f:convertNumber pattern="#0.00" type="number"/>
-            </p:inputText>
+            <p:inputText id="peso" onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 46) return false;" 
+                value="#{produtoTrocaBean.produtoTroca.peso}" placeholder="Peso" 
+                title="Peso"/>
+        </h:panelGroup>
+        <h:panelGroup id="alturaPanel" layout="block" styleClass="ptb10">
+            <p:inputText id="altura" onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 46) return false;" 
+                value="#{produtoTrocaBean.produtoTroca.altura}" placeholder="Altura" 
+                title="Altura"/>
+        </h:panelGroup>
+        <h:panelGroup id="larguraPanel" layout="block" styleClass="ptb10">
+            <p:inputText id="largura" onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 46) return false;" 
+                value="#{produtoTrocaBean.produtoTroca.largura}" placeholder="Largura" 
+                title="Largura"/>
+        </h:panelGroup>
+        <h:panelGroup id="profundidadePanel" layout="block" styleClass="ptb10">
+            <p:inputText id="profundidade" onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 46) return false;" 
+                value="#{produtoTrocaBean.produtoTroca.profundidade}" placeholder="Profundidade" 
+                title="Profundidade"/>
+        </h:panelGroup>
+        <h:panelGroup id="materialPanel" layout="block" styleClass="ptb10">
+            <p:inputText id="material" value="#{produtoTrocaBean.produtoTroca.material}" placeholder="Material"
+                title="Material" required="true"/>
+        </h:panelGroup>
+        <h:panelGroup id="corPanel" layout="block" styleClass="ptb10">
+            <p:inputText id="cor" value="#{produtoTrocaBean.produtoTroca.cor}" placeholder="Cor"
+                title="Cor" required="true"/>
+        </h:panelGroup>
+        <h:panelGroup id="marcaPanel" layout="block" styleClass="ptb10">
+            <p:inputText id="marca" value="#{produtoTrocaBean.produtoTroca.marca}" placeholder="Marca"
+                title="Marca" required="true"/>
+        </h:panelGroup>
+        <h:panelGroup id="estadoPanel" layout="block" styleClass="ptb10">
+            <p:selectOneMenu id="estado" value="#{produtoTrocaBean.produtoTroca.estado}" 
+                style="width:230px" required="true">
+                <f:selectItem itemLabel="Selecione o estado*" itemValue="" />
+                <f:selectItem itemLabel="Novo" itemValue="NOVO" />
+                <f:selectItem itemLabel="Defeito" itemValue="DEFEITO" />
+                <f:selectItem itemLabel="Conservado" itemValue="CONSERVADO" />
+                <f:selectItem itemLabel="Marcas de uso" itemValue="MARCADO" />
+            </p:selectOneMenu>
         </h:panelGroup>
         <h:panelGroup id="descricaoProduto" layout="block" styleClass="ptb10">
             <p:inputTextarea style="width:230px" placeholder="Descrição" 
                 title="Descrição" value="#{produtoTrocaBean.produtoTroca.observacoes}" />
         </h:panelGroup>
+        <h:panelGroup id="desejoPanel" layout="block" styleClass="ptb10">
+            <p:inputTextarea style="width:230px" placeholder="Produtos desejados" 
+                title="Produtos desejados" value="#{produtoTrocaBean.produtoTroca.produtosDesejados}" />
+        </h:panelGroup>
         
         <h:panelGroup id="formActionPanel" layout="block" styleClass="row"
             style="margin-top:20px;">
-            <p:commandButton id="saveButton" value="Salvar" action="#{produtoTrocaBean.save()}" 
-                    update="@this" process="@this" styleClass="btn"/>
+            <p:commandButton id="saveButton" value="Salvar" action="#{produtoTrocaBean.save(usuarioBean.logado)}" 
+                update="@this" process="@this" styleClass="btn" ajax="false"/>
             <f:verbatim>&#160;&#160;</f:verbatim>
             <p:commandButton id="cancelButton" value="Cancelar" styleClass="btn"
                 immediate="true" process="@this" update="@this"

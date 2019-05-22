@@ -7,12 +7,18 @@
 package jsf;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import produto_troca.ProdutoFachada;
 import produto_troca.ProdutoTroca;
+import usuario.Usuario;
 
 /**
  *
@@ -46,11 +52,21 @@ public class ProdutoTrocaBean {
         
     }
 
-    public void save() {
-        
+    public void save(Usuario logado) {
+        try {
+            produtoTroca.setId(produtoFachada.getIdUltimoProduto()+1);
+            produtoTroca.setDataCriacao(new Date());
+            produtoTroca.setIdUsuario(logado);
+            produtoFachada.persist(produtoTroca);
+            produtoTroca = new ProdutoTroca();
+            FacesContext.getCurrentInstance().addMessage("clientId",  new FacesMessage("Produto cadastrado com sucesso!"));
+        } catch (EJBException e) {
+            FacesContext.getCurrentInstance().addMessage("clientId",  new FacesMessage("Falha no cadastro!"));
+        }
     }
     
     public String cadastrarRedirect() throws IOException {
+        produtoTroca = new ProdutoTroca();
         return "/produto_troca/create.xhtml?faces-redirect=true";
     }
     

@@ -52,8 +52,9 @@ public class UsuarioBean {
     }
     
     public String login() {
-        logado = usuarioFachada.findByEmailAndSenha(logado.getEmail(), logado.getSenha());
+        logado = usuarioFachada.findByEmailAndSenha(novo.getEmail(), novo.getSenha());
         if(logado == null) {            
+            novo = new Usuario();
             return "/usuario/login.xhtml?faces-redirect=true";
         } else {
             return "/produto_troca/search.xhtml?faces-redirect=true";
@@ -82,7 +83,7 @@ public class UsuarioBean {
     }
     
     public String entrarRedirect() throws IOException {
-        logado = new Usuario();
+        novo = new Usuario();
         return "/usuario/login.xhtml?faces-redirect=true";
     }
     

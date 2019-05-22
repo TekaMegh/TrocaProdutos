@@ -14,11 +14,11 @@
             <h1><h:outputText value="Login"/></h1>
             <h:panelGroup layout="block" styleClass="col-xs-8 ptb10">
                 <h:outputLabel for="email" value="Email: " />
-                <p:inputText id="email" value="#{usuarioBean.logado.email}"/>
+                <p:inputText id="email" value="#{usuarioBean.novo.email}"/>
             </h:panelGroup>
             <h:panelGroup layout="block" styleClass="col-xs-8 ptb10">
                 <h:outputLabel for="senha" value="Senha: " />
-                <p:password id="senha" value="#{usuarioBean.logado.senha}" required="true" />
+                <p:password id="senha" value="#{usuarioBean.novo.senha}" required="true" />
             </h:panelGroup>
             <h:panelGroup id="formActionPanel" layout="block" styleClass="row"
                 style="margin-top:20px;">
