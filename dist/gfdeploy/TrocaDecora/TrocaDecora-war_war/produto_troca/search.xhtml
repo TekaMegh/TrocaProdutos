@@ -46,15 +46,9 @@
 
                 <p:dialog header="#{produtoTrocaBean.produtoTroca.nome}" widgetVar="modalProduto" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                     <p:outputPanel id="produtoInfo" style="text-align:center;">
-                        <f:metadata>
-                            <f:viewAction action="#{chatBean.novaConversa.setIdProduto(produtoTrocaBean.produtoTroca)}" />
-                            <f:viewAction action="#{chatBean.novaConversa.setIdUsuario2(produtoTrocaBean.produtoTroca.idUsuario)}" />
-                        </f:metadata>
                         <p:panelGrid  columns="2" rendered="#{produtoTrocaBean.produtoTroca!=null}" columnClasses="label,value">
-
-
                             <h:outputText value="Nome" />
-                            <h:outputText value="#{produtoTrocaBean.produtoTroca.nome}" />
+                            <h:outputText value="#{chatBean.novaConversa.getIdUsuario2}" />
 
                             <h:outputText value="Categoria" />
                             <h:outputText value="#{produtoTrocaBean.produtoTroca.categoria}" />
