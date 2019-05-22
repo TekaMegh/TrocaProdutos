@@ -34,6 +34,8 @@ import usuario.Usuario;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Conversa.findAll", query = "SELECT c FROM Conversa c"),
+    @NamedQuery(name = "Conversa.findByUser1User2AndProduto", query = "SELECT c FROM Conversa c WHERE c.idUsuario1 = :user1 AND c.idUsuario2 = :user2 AND c.idProduto = :produto"),
+    @NamedQuery(name = "Conversa.findDesc", query = "SELECT c FROM Conversa c ORDER BY c.id desc"),
     @NamedQuery(name = "Conversa.findById", query = "SELECT c FROM Conversa c WHERE c.id = :id")})
 public class Conversa implements Serializable {
     private static final long serialVersionUID = 1L;

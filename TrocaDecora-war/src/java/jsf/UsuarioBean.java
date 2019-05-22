@@ -69,7 +69,6 @@ public class UsuarioBean {
         } catch (EJBException e) {
             FacesContext.getCurrentInstance().addMessage("clientId",  new FacesMessage("Falha no cadastro! Email já cadastrado!"));
         }
-
     }
     
     public String cancelarRedirect() throws IOException {

@@ -23,8 +23,8 @@
 
                 <p:dataTable id="table" var="produto" value="#{produtoTrocaBean.produtos}" paginator="true" lazy="true" emptyMessage="Sem resultados" sortBy="id" sortOrder="descending"
                              paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
-                             paginatorPosition="bottom" rows="10" currentPageReportTemplate="{currentPage} de {totalPages}" rowSelectMode="add" selection="#{produtoTrocaBean.produtoTroca}">
-                    <p:ajax event="contextMenu" process="table" update="@this" oncomplete="PF('tableMenu').show(currentEvent);" id="pajax" />
+                             paginatorPosition="bottom" rows="10" currentPageReportTemplate="{currentPage} de {totalPages}" rowSelectMode="add" selectionMode="single" rowKey="#{produto.id}" selection="#{produtoTrocaBean.produtoTroca}">
+                    <!--                    <p:ajax event="contextMenu" process="table" update="@this" oncomplete="PF('tableMenu').show(currentEvent);" id="pajax" />-->
 
                     <p:column styleClass="vis8">
                         <f:facet name="header">
@@ -32,10 +32,71 @@
                         </f:facet>
                         <h:outputText value="#{produto.nome}" />
                     </p:column>
+                    <p:column styleClass="vis8">
+                        <f:facet name="header">
+                            <h:outputText value="Nome" />
+                        </f:facet>
+                        <h:outputText value="#{produto.nome}" />
+                    </p:column>
                 </p:dataTable>
-                <p:contextMenu id="contextMenu" for="table" beforeShow="return true;" widgetVar="tableMenu">
+                <p:contextMenu id="contextMenu" for="table" >
                     <p:menuitem id="solicitarTroca" value="Solicitar Troca" action="#{produtoTrocaBean.solicitarTroca()}" />
+                    <p:menuitem id="maisInfos" value="Mais sobre o produto" update="produtoInfo" oncomplete="PF('modalProduto').show()" />
                 </p:contextMenu>
+
+                <p:dialog header="#{produtoTrocaBean.produtoTroca.nome}" widgetVar="modalProduto" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="produtoInfo" style="text-align:center;">
+                        <f:metadata>
+                            <f:viewAction action="#{chatBean.novaConversa.setIdProduto(produtoTrocaBean.produtoTroca)}" />
+                            <f:viewAction action="#{chatBean.novaConversa.setIdUsuario2(produtoTrocaBean.produtoTroca.idUsuario)}" />
+                        </f:metadata>
+                        <p:panelGrid  columns="2" rendered="#{produtoTrocaBean.produtoTroca!=null}" columnClasses="label,value">
+
+
+                            <h:outputText value="Nome" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.nome}" />
+
+                            <h:outputText value="Categoria" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.categoria}" />
+
+                            <h:outputText value="Peso" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.peso}g" />
+
+                            <h:outputText value="Altura" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.altura}cm" />
+
+                            <h:outputText value="Largura" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.largura}cm" />
+
+                            <h:outputText value="Profundidade" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.profundidade}cm" />
+
+                            <h:outputText value="Material" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.material}" />
+
+                            <h:outputText value="Cor" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.cor}" />
+
+                            <h:outputText value="Marca" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.marca}" />
+
+                            <h:outputText value="Estado" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.estado}" />
+
+                            <h:outputText value="Observações" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.observacoes}" />
+
+                            <h:outputText value="Produtos Desejados" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.produtosDesejados}" />
+
+                            <h:panelGroup id="formActionPanel2" layout="block" styleClass="row"
+                                          style="margin-top:20px;">
+                                <p:commandButton id="novaConversa" value="Conversar com o dono" styleClass="btn"
+                                                 action="#{chatBean.criarNovaConversa}" />
+                            </h:panelGroup>
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </p:dialog>
             </h:form>
         </h:body>
         <ui:include src="/resources/templates/footer.xhtml" />
