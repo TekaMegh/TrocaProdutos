@@ -12,15 +12,21 @@
     <h:form>
         <h1><h:outputText value="Pesquisa de Produtos"/></h1>
         
-        <h:panelGroup id="formActionPanel" layout="block" styleClass="row"
-            style="margin-top:20px;">
-            <p:commandButton id="saveButton" value="Salvar" action="#{usuarioBean.save()}" 
-                    update="@this" process="@this" styleClass="btn"/>
-            <f:verbatim>&#160;&#160;</f:verbatim>
-            <p:commandButton id="cancelButton" value="Cancelar" styleClass="btn"
-                    immediate="true" process="@this" update="@this"
-                    action="#{usuarioBean.cancelarRedirect}" />
-        </h:panelGroup>
+        <p:dataTable id="table" var="produto" value="#{produtoTrocaBean.produtos}" paginator="true" lazy="true" emptyMessage="Sem resultados" sortBy="id" sortOrder="descending"
+            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
+            paginatorPosition="bottom" rows="10" currentPageReportTemplate="{currentPage} de {totalPages}" rowSelectMode="add" selection="#{produtoTrocaBean.produtoTroca}">
+            <p:ajax event="contextMenu" process="table" update="@this" oncomplete="PF('tableMenu').show(currentEvent);" id="pajax" />
+
+            <p:column styleClass="vis8">
+                    <f:facet name="header">
+                            <h:outputText value="Nome" />
+                    </f:facet>
+                    <h:outputText value="#{produto.nome}" />
+            </p:column>
+        </p:dataTable>
+        <p:contextMenu id="contextMenu" for="table" beforeShow="return true;" widgetVar="tableMenu">
+            <p:menuitem id="solicitarTroca" value="Solicitar Troca" action="#{produtoTrocaBean.solicitarTroca()}" />
+        </p:contextMenu>
     </h:form>
     </h:body>
     <ui:include src="/resources/templates/footer.xhtml" />

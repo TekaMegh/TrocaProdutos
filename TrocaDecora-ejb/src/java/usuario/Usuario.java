@@ -14,6 +14,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,23 +36,17 @@ import produto_troca.ProdutoTroca;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+    @NamedQuery(name = "Usuario.findDesc", query = "SELECT u FROM Usuario u ORDER BY u.id desc"),
     @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id"),
     @NamedQuery(name = "Usuario.findByNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome"),
     @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha"),
-    @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email"),
+    @NamedQuery(name = "Usuario.findByEmailAndSenha", query = "SELECT u FROM Usuario u WHERE u.email = :email and u.senha = :senha"),
     @NamedQuery(name = "Usuario.findByTelefone", query = "SELECT u FROM Usuario u WHERE u.telefone = :telefone"),
     @NamedQuery(name = "Usuario.findByCidade", query = "SELECT u FROM Usuario u WHERE u.cidade = :cidade"),
     @NamedQuery(name = "Usuario.findByEstado", query = "SELECT u FROM Usuario u WHERE u.estado = :estado"),
     @NamedQuery(name = "Usuario.findByBairro", query = "SELECT u FROM Usuario u WHERE u.bairro = :bairro")})
 public class Usuario implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private Collection<Mensagem> mensagemCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario2")
-    private Collection<Conversa> conversaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario1")
-    private Collection<Conversa> conversaCollection1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private Collection<ProdutoTroca> produtoTrocaCollection;
+    
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -199,42 +195,6 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "usuario.Usuario[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Collection<ProdutoTroca> getProdutoTrocaCollection() {
-        return produtoTrocaCollection;
-    }
-
-    public void setProdutoTrocaCollection(Collection<ProdutoTroca> produtoTrocaCollection) {
-        this.produtoTrocaCollection = produtoTrocaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Mensagem> getMensagemCollection() {
-        return mensagemCollection;
-    }
-
-    public void setMensagemCollection(Collection<Mensagem> mensagemCollection) {
-        this.mensagemCollection = mensagemCollection;
-    }
-
-    @XmlTransient
-    public Collection<Conversa> getConversaCollection() {
-        return conversaCollection;
-    }
-
-    public void setConversaCollection(Collection<Conversa> conversaCollection) {
-        this.conversaCollection = conversaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Conversa> getConversaCollection1() {
-        return conversaCollection1;
-    }
-
-    public void setConversaCollection1(Collection<Conversa> conversaCollection1) {
-        this.conversaCollection1 = conversaCollection1;
     }
     
 }

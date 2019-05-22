@@ -28,6 +28,11 @@
                 <f:selectItem itemLabel="Indefinido" itemValue="INDEFINIDO" />
             </p:selectOneMenu>
         </h:panelGroup>
+        <h:panelGroup id="pesoPanel" layout="block" styleClass="ptb10">
+            <p:inputText id="preco" value="#{produtoTrocaBean.produtoTroca.peso}" >
+                <f:convertNumber pattern="#0.00" type="number"/>
+            </p:inputText>
+        </h:panelGroup>
         <h:panelGroup id="descricaoProduto" layout="block" styleClass="ptb10">
             <p:inputTextarea style="width:230px" placeholder="Descrição" 
                 title="Descrição" value="#{produtoTrocaBean.produtoTroca.observacoes}" />
@@ -45,6 +50,8 @@
     </h:form>
     </h:body>
     <ui:include src="/resources/templates/footer.xhtml" />
+    
+    
 </f:view>
 </html>
 

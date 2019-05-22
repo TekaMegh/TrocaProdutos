@@ -11,6 +11,7 @@
     <h:body>
     <h:form>
         <div class="row pt170">
+            <h1><h:outputText value="Login"/></h1>
             <h:panelGroup layout="block" styleClass="col-xs-8 ptb10">
                 <h:outputLabel for="email" value="Email: " />
                 <p:inputText id="email" value="#{usuarioBean.logado.email}"/>
@@ -22,11 +23,11 @@
             <h:panelGroup id="formActionPanel" layout="block" styleClass="row"
                 style="margin-top:20px;">
                 <p:commandButton id="loginButton" value="Entrar" action="#{usuarioBean.login()}" 
-                        update="@this" process="@this" styleClass="btn"/>
+                        update="@this" process="@this" ajax="false" styleClass="btn"/>
                 <f:verbatim>&#160;&#160;</f:verbatim>
                 <p:commandButton id="cancelButton" value="Cancelar" styleClass="btn"
                         immediate="true" process="@this" update="@this"
-                        action="#{usuarioBean.cancelar}" />
+                        action="#{usuarioBean.cancelarRedirect}" />
             </h:panelGroup>
         </div>
     </h:form>

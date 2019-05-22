@@ -17,7 +17,7 @@
                     
                     Troca Decor
 
-                    <h:panelGroup rendered="#{usuarioBean.logado != null}">
+                    <h:panelGroup rendered="#{usuarioBean.logado == null}">
                         <p:commandButton id="cadastrarButton" value="Cadastrar" styleClass="btn right-button"
                             immediate="true" process="@this" update="@this"
                             action="#{usuarioBean.cadastrarRedirect}" />
@@ -25,7 +25,7 @@
                             immediate="true" process="@this" update="@this"
                             action="#{usuarioBean.entrarRedirect}" />
                     </h:panelGroup>
-                    <p:menuButton value="menu" styleClass="right-button btn" rendered="#{usuarioBean.logado == null}">
+                    <p:menuButton value="menu" styleClass="right-button btn" rendered="#{usuarioBean.logado != null}">
                         <p:menuitem value="Sair" action="#{usuarioBean.logout}" update="@form"/>
                         <p:menuitem value="Cadastrar Produto" action="#{produtoTrocaBean.cadastrarRedirect}" />
                         <p:menuitem value="Chat" action="#{chatBean.conversasRedirect}" />

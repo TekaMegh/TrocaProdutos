@@ -6,6 +6,7 @@
 
 package usuario;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -34,5 +35,22 @@ public class UsuarioFachada {
     public List<usuario.Usuario> getListaUsuarios() {
         Query query = em.createNamedQuery("Usuario.findAll");
         return query.getResultList();
+    }
+    
+    public Integer getIdUltimoUsuario() {
+        List<Usuario> usuarios = em.createNamedQuery("Usuario.findDesc").getResultList();
+        if(usuarios.isEmpty()) {
+            return 1;
+        } else {
+            return usuarios.get(0).getId();
+        }
+    }
+    
+    public Usuario findByEmailAndSenha(String email, String senha) {
+        try {
+            return (Usuario) em.createNamedQuery("Usuario.findByEmailAndSenha").setParameter("email", email).setParameter("senha", senha).getSingleResult();
+        } catch (Exception e){
+            return null;
+        }
     }
 }

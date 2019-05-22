@@ -39,10 +39,11 @@
             <p:password id="senha" value="#{usuarioBean.novo.senha}" feedback="true" 
                 placeholder="Senha" title="Senha" required="true"/>
         </h:panelGroup>
+        
         <h:panelGroup id="formActionPanel" layout="block" styleClass="row"
             style="margin-top:20px;">
             <p:commandButton id="saveButton" value="Salvar" action="#{usuarioBean.save()}" 
-                    update="@this" process="@this" styleClass="btn"/>
+                    update="nomePanel" process="nomePanel" ajax="false" styleClass="btn"/>
             <f:verbatim>&#160;&#160;</f:verbatim>
             <p:commandButton id="cancelButton" value="Cancelar" styleClass="btn"
                     immediate="true" process="@this" update="@this"
