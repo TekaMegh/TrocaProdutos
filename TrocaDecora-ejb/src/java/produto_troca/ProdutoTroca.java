@@ -42,7 +42,7 @@ import usuario.Usuario;
     @NamedQuery(name = "ProdutoTroca.findAll", query = "SELECT p FROM ProdutoTroca p order by p.id desc"),
     @NamedQuery(name = "ProdutoTroca.findById", query = "SELECT p FROM ProdutoTroca p WHERE p.id = :id"),
     @NamedQuery(name = "ProdutoTroca.findByDataCriacao", query = "SELECT p FROM ProdutoTroca p WHERE p.dataCriacao = :dataCriacao"),
-    @NamedQuery(name = "ProdutoTroca.findByNome", query = "SELECT p FROM ProdutoTroca p WHERE p.nome = :nome"),
+    @NamedQuery(name = "ProdutoTroca.findByNome", query = "SELECT p FROM ProdutoTroca p WHERE upper(p.nome) like upper(:nome)"),
     @NamedQuery(name = "ProdutoTroca.findByCategoria", query = "SELECT p FROM ProdutoTroca p WHERE p.categoria = :categoria"),
     @NamedQuery(name = "ProdutoTroca.findByPeso", query = "SELECT p FROM ProdutoTroca p WHERE p.peso = :peso"),
     @NamedQuery(name = "ProdutoTroca.findByAltura", query = "SELECT p FROM ProdutoTroca p WHERE p.altura = :altura"),

@@ -41,11 +41,12 @@ public class ProdutoTrocaBean {
     }
     
     public List<ProdutoTroca> getListaProdutos() {
-        return produtoFachada.getListaProdutosTroca();
+        produtos = produtoFachada.getListaProdutosTroca();
+        return produtos;
     }
     
     public void search() {
-        //produtos = produtoFachada.getProdutosByDescricao(filtro);
+        produtos = produtoFachada.getProdutosByNome(filtro);
     }
     
     public void solicitarTroca() {

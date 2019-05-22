@@ -44,4 +44,9 @@ public class ProdutoFachada {
             return produtos.get(0).getId();
         }
     }
+public List<produto_troca.ProdutoTroca> getProdutosByNome(String nome) {
+        nome = "%"+nome+"%";
+        Query query = em.createNamedQuery("ProdutoTroca.findByNome").setParameter("nome", nome);
+        return query.getResultList();
+    }
 }

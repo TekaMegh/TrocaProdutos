@@ -5,37 +5,40 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-        
-<f:view contentType="text/html">
-    <ui:include src="/resources/templates/header.xhtml" />
-    <h:body>
-    <h:form>
-        <h1><h:outputText value="Pesquisa de Produtos"/></h1>
-        
-        <h:panelGroup id="pesquisaPanel" layout="block" styleClass="ptb10">
-            <p:inputText id="filtro" value="#{produtoTrocaBean.filtro}" placeholder="Filtro"/>
-            <p:commandButton id="search" value="Pesquisar" action="#{produtoTrocaBean.search()}" 
-                    update="@this" process="pesquisaPanel" ajax="false" styleClass="btn"/>
-        </h:panelGroup>
-        
-        <p:dataTable id="table" var="produto" value="#{produtoTrocaBean.produtos}" paginator="true" lazy="true" emptyMessage="Sem resultados" sortBy="id" sortOrder="descending"
-            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
-            paginatorPosition="bottom" rows="10" currentPageReportTemplate="{currentPage} de {totalPages}" rowSelectMode="add" selection="#{produtoTrocaBean.produtoTroca}">
-            <p:ajax event="contextMenu" process="table" update="@this" oncomplete="PF('tableMenu').show(currentEvent);" id="pajax" />
 
-            <p:column styleClass="vis8">
-                    <f:facet name="header">
+    <f:view contentType="text/html">
+        <f:metadata>
+            <f:viewAction action="#{produtoTrocaBean.getListaProdutos()}" />
+        </f:metadata>
+        <ui:include src="/resources/templates/header.xhtml" />
+        <h:body>
+            <h:form>
+                <h1><h:outputText value="Pesquisa de Produtos"/></h1>
+
+                <h:panelGroup id="pesquisaPanel" layout="block" styleClass="ptb10">
+                    <p:inputText id="filtro" value="#{produtoTrocaBean.filtro}" placeholder="Filtro"/>
+                    <p:commandButton id="search" value="Pesquisar" action="#{produtoTrocaBean.search()}" 
+                                     update="@this" process="pesquisaPanel" ajax="false" styleClass="btn"/>
+                </h:panelGroup>
+
+                <p:dataTable id="table" var="produto" value="#{produtoTrocaBean.produtos}" paginator="true" lazy="true" emptyMessage="Sem resultados" sortBy="id" sortOrder="descending"
+                             paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
+                             paginatorPosition="bottom" rows="10" currentPageReportTemplate="{currentPage} de {totalPages}" rowSelectMode="add" selection="#{produtoTrocaBean.produtoTroca}">
+                    <p:ajax event="contextMenu" process="table" update="@this" oncomplete="PF('tableMenu').show(currentEvent);" id="pajax" />
+
+                    <p:column styleClass="vis8">
+                        <f:facet name="header">
                             <h:outputText value="Nome" />
-                    </f:facet>
-                    <h:outputText value="#{produto.nome}" />
-            </p:column>
-        </p:dataTable>
-        <p:contextMenu id="contextMenu" for="table" beforeShow="return true;" widgetVar="tableMenu">
-            <p:menuitem id="solicitarTroca" value="Solicitar Troca" action="#{produtoTrocaBean.solicitarTroca()}" />
-        </p:contextMenu>
-    </h:form>
-    </h:body>
-    <ui:include src="/resources/templates/footer.xhtml" />
-</f:view>
+                        </f:facet>
+                        <h:outputText value="#{produto.nome}" />
+                    </p:column>
+                </p:dataTable>
+                <p:contextMenu id="contextMenu" for="table" beforeShow="return true;" widgetVar="tableMenu">
+                    <p:menuitem id="solicitarTroca" value="Solicitar Troca" action="#{produtoTrocaBean.solicitarTroca()}" />
+                </p:contextMenu>
+            </h:form>
+        </h:body>
+        <ui:include src="/resources/templates/footer.xhtml" />
+    </f:view>
 </html>
 
