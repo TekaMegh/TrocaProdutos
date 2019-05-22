@@ -26,6 +26,7 @@ public class ProdutoTrocaBean {
 
     private ProdutoTroca produtoTroca;
     private List<ProdutoTroca> produtos;
+    private String filtro;
     
     /**
      * Creates a new instance of ProdutoTrocaBean
@@ -37,7 +38,7 @@ public class ProdutoTrocaBean {
         return produtoFachada.getListaProdutosTroca();
     }
     
-    public void search(String filtro) {
+    public void search() {
         //produtos = produtoFachada.getProdutosByDescricao(filtro);
     }
     
@@ -67,5 +68,13 @@ public class ProdutoTrocaBean {
 
     public void setProdutos(List<ProdutoTroca> produtos) {
         this.produtos = produtos;
+    }
+
+    public String getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(String filtro) {
+        this.filtro = filtro;
     }
 }

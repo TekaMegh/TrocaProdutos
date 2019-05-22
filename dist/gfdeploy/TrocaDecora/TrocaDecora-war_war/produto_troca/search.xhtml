@@ -12,6 +12,12 @@
     <h:form>
         <h1><h:outputText value="Pesquisa de Produtos"/></h1>
         
+        <h:panelGroup id="pesquisaPanel" layout="block" styleClass="ptb10">
+            <p:inputText id="filtro" value="#{produtoTrocaBean.filtro}" placeholder="Filtro"/>
+            <p:commandButton id="search" value="Pesquisar" action="#{produtoTrocaBean.search()}" 
+                    update="@this" process="pesquisaPanel" ajax="false" styleClass="btn"/>
+        </h:panelGroup>
+        
         <p:dataTable id="table" var="produto" value="#{produtoTrocaBean.produtos}" paginator="true" lazy="true" emptyMessage="Sem resultados" sortBy="id" sortOrder="descending"
             paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
             paginatorPosition="bottom" rows="10" currentPageReportTemplate="{currentPage} de {totalPages}" rowSelectMode="add" selection="#{produtoTrocaBean.produtoTroca}">
