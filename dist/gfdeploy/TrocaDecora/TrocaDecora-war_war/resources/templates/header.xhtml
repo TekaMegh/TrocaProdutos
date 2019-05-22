@@ -26,9 +26,6 @@
                             action="#{usuarioBean.entrarRedirect}" />
                     </h:panelGroup>
                     <p:menuButton value="menu" styleClass="right-button btn" rendered="#{usuarioBean.logado != null}">
-                        <f:metadata>
-                            <f:viewAction action="#{chatBean.novaConversa.setIdUsuario1(usuarioBean.logado)}" />
-                        </f:metadata>
                         <p:menuitem value="Sair" action="#{usuarioBean.logout}" update="@form"/>
                         <p:menuitem value="Cadastrar Produto" action="#{produtoTrocaBean.cadastrarRedirect}" />
                         <p:menuitem value="Chat" action="#{chatBean.conversasRedirect}" />

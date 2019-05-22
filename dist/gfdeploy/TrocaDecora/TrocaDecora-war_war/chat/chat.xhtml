@@ -1,12 +1,42 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:include src="/resources/templates/header.xhtml" />
+
     <h:body>
-        Criar area de chat com mensagens e campo de texto
+        <h:form>
+            <h1><h:outputText value="Conversa com #{chatBean.novaConversa.idUsuario2.nome}"/></h1>
+            <p:dataTable id="table" var="mensagem" value="#{chatBean.novaConversa.mensagemCollection}" lazy="false" emptyMessage="Sem mensagens" sortBy="data" sortOrder="descending">
+
+                <p:column styleClass="vis8">
+                    <f:facet name="header1">
+                        <h:outputText value="Remetente" />
+                    </f:facet>
+                    <h:outputText value="#{mensagem.idUsuario.nome}" />
+                </p:column>
+
+                <p:column styleClass="vis8">
+                    <f:facet name="header2">
+                        <h:outputText value="Mensagem" />
+                    </f:facet>
+                    <h:outputText  value="#{mensagem.texto}" />
+                </p:column>
+            </p:dataTable>
+
+            <h:panelGroup id="pesquisaPanel" layout="block" styleClass="ptb10">
+                <p:inputText id="mensagem" value="#{chatBean.novaMensagem}" placeholder="Filtro"/>
+                <p:commandButton id="search" value="Enviar" action="#{chatBean.enviaMsg()}" 
+                                 update="@this" process="pesquisaPanel" ajax="false" styleClass="btn"/>
+            </h:panelGroup>
+
+
+
+        </h:form>
     </h:body>
+    <ui:include src="/resources/templates/footer.xhtml" />
 </html>
 

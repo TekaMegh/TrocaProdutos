@@ -7,7 +7,9 @@ package jsf;
 
 import chat.ChatFachada;
 import chat.Conversa;
+import chat.Mensagem;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -30,6 +32,7 @@ public class ChatBean {
     private ChatFachada chatFachada;
 
     private Conversa novaConversa;
+    private String novaMensagem = "";
 
     /**
      * Creates a new instance of ChatBean
@@ -45,15 +48,39 @@ public class ChatBean {
         return "/chat/conversas.xhtml?faces-redirect=true";
     }
 
-    public void criarNovaConversa() {
+    public String getNovaMensagem() {
+        return novaMensagem;
+    }
+
+    public void setNovaMensagem(String novaMensagem) {
+        this.novaMensagem = novaMensagem;
+    }
+
+    public String criarNovaConversa(Usuario user1, Usuario user2, ProdutoTroca produto) {
+        novaConversa = new Conversa();
+        novaConversa.setIdUsuario1(user1);
+        novaConversa.setIdUsuario2(user2);
+        novaConversa.setIdProduto(produto);
         Conversa conversa = chatFachada.findConversa(novaConversa.getIdUsuario1(), novaConversa.getIdUsuario2(), novaConversa.getIdProduto());
         if (conversa == null) {
             if (novaConversa.getIdUsuario1() != null) {
                 save();
+                return "/chat/chat.xhtml?faces-redirect=true";
             }
         } else {
             novaConversa = conversa;
+            return "/chat/chat.xhtml?faces-redirect=true";
         }
+        return "";
+    }
+    
+    public void enviaMsg(){
+        Mensagem mensagem = new Mensagem();
+        mensagem.setTexto(novaMensagem);
+        mensagem.setIdUsuario(novaConversa.getIdUsuario1());
+        mensagem.setIdConversa(novaConversa);
+        mensagem.setDataEnvio(new Date());
+        novaConversa.adicionaMensagem(mensagem);
     }
 
     public void save() {

@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <f:view contentType="text/html">
         <f:metadata>
@@ -32,12 +33,6 @@
                         </f:facet>
                         <h:outputText value="#{produto.nome}" />
                     </p:column>
-                    <p:column styleClass="vis8">
-                        <f:facet name="header">
-                            <h:outputText value="Nome" />
-                        </f:facet>
-                        <h:outputText value="#{produto.nome}" />
-                    </p:column>
                 </p:dataTable>
                 <p:contextMenu id="contextMenu" for="table" >
                     <p:menuitem id="solicitarTroca" value="Solicitar Troca" action="#{produtoTrocaBean.solicitarTroca()}" />
@@ -47,8 +42,9 @@
                 <p:dialog header="#{produtoTrocaBean.produtoTroca.nome}" widgetVar="modalProduto" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                     <p:outputPanel id="produtoInfo" style="text-align:center;">
                         <p:panelGrid  columns="2" rendered="#{produtoTrocaBean.produtoTroca!=null}" columnClasses="label,value">
+
                             <h:outputText value="Nome" />
-                            <h:outputText value="#{chatBean.novaConversa.getIdUsuario2}" />
+                            <h:outputText value="#{produtoTrocaBean.produtoTroca.nome}" />
 
                             <h:outputText value="Categoria" />
                             <h:outputText value="#{produtoTrocaBean.produtoTroca.categoria}" />
@@ -85,8 +81,11 @@
 
                             <h:panelGroup id="formActionPanel2" layout="block" styleClass="row"
                                           style="margin-top:20px;">
+                                <c:set var="user1" value="#{usuarioBean.logado}" scope="request" />
+                                <c:set var="user2" value="#{produtoTrocaBean.produtoTroca.idUsuario}" scope="request" />
+                                <c:set var="produto" value="#{produtoTrocaBean.produtoTroca}" scope="request" />
                                 <p:commandButton id="novaConversa" value="Conversar com o dono" styleClass="btn"
-                                                 action="#{chatBean.criarNovaConversa}" />
+                                                 action="#{chatBean.criarNovaConversa(user1, user2, produto)}" />
                             </h:panelGroup>
                         </p:panelGrid>
                     </p:outputPanel>

@@ -7,6 +7,7 @@
 package chat;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -80,6 +81,13 @@ public class Conversa implements Serializable {
         this.mensagemCollection = mensagemCollection;
     }
 
+    public void adicionaMensagem(Mensagem mensagem){
+        if(mensagemCollection == null){
+            mensagemCollection = new ArrayList<Mensagem>();
+        }
+        this.mensagemCollection.add(mensagem);
+    }
+    
     public ProdutoTroca getIdProduto() {
         return idProduto;
     }
