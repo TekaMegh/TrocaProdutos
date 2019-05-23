@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import produto_troca.ProdutoTroca;
 import usuario.Usuario;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-05-22T01:12:07")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2019-05-22T18:22:04")
 @StaticMetamodel(Conversa.class)
 public class Conversa_ { 
 

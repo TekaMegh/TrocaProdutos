@@ -21,6 +21,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>faces/produto_troca/search.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

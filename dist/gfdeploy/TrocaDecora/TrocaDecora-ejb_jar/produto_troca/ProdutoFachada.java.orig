@@ -44,11 +44,13 @@ public class ProdutoFachada {
         } else {
             return produtos.get(0).getId();
         }
+    }
+public List<produto_troca.ProdutoTroca> getProdutosByNome(String nome) {
 =======
     public List<produto_troca.ProdutoTroca> getProdutosByNome(String nome) {
+>>>>>>> f89082fa2f4279f1726e3ab88748237e1487c36d
         nome = "%"+nome+"%";
         Query query = em.createNamedQuery("ProdutoTroca.findByNome").setParameter("nome", nome);
         return query.getResultList();
->>>>>>> b1ba2be55e609277a8f20ffee7b81d6223f90213
     }
 }

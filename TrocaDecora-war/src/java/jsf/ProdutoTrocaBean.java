@@ -45,8 +45,12 @@ public class ProdutoTrocaBean {
         return produtos;
     }
     
-    public void search() {
-        produtos = produtoFachada.getProdutosByNome(filtro);
+    public void search(Usuario logado) {
+        Integer idLogado = 0;
+        if(logado != null) {
+            idLogado = logado.getId();
+        }
+        produtos = produtoFachada.getProdutosByNome(filtro, idLogado);
     }
     
     public void solicitarTroca() {
