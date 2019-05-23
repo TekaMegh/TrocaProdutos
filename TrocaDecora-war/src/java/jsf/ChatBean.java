@@ -67,6 +67,7 @@ public class ChatBean {
     }
     
     public String criarNovaConversa(Usuario user1, Usuario user2, ProdutoTroca produto) {
+        novaMensagem = null;
         novaConversa = new Conversa();
         novaConversa.setIdUsuario1(user1);
         novaConversa.setIdUsuario2(user2);
@@ -84,13 +85,16 @@ public class ChatBean {
         return "";
     }
     
-    public void enviaMsg(){
+    public void enviaMsg(Usuario logado){
         Mensagem mensagem = new Mensagem();
         mensagem.setTexto(novaMensagem);
-        mensagem.setIdUsuario(novaConversa.getIdUsuario1());
+        mensagem.setIdUsuario(logado);
         mensagem.setIdConversa(novaConversa);
         mensagem.setDataEnvio(new Date());
+        mensagem.setId(chatFachada.getIdUltimaMensagem() +1);
         novaConversa.adicionaMensagem(mensagem);
+        chatFachada.merge(novaConversa);
+        novaMensagem = null;
     }
 
     public void save() {

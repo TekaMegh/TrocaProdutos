@@ -33,8 +33,8 @@
             <h:panelGroup id="mensagemPanel" layout="block" styleClass="ptb10">
                 <p:inputText id="mensagem" value="#{chatBean.novaMensagem}" placeholder="Mensagem"/>
                 <f:verbatim>&#160;&#160;</f:verbatim>
-                <p:commandButton id="enviar" value="Enviar" action="#{chatBean.enviaMsg()}" 
-                                 update="@this" process="pesquisaPanel" ajax="false" styleClass="btn"/>
+                <p:commandButton id="enviar" value="Enviar" action="#{chatBean.enviaMsg(usuarioBean.logado)}" 
+                                 update="@this" process="@this" ajax="false" styleClass="btn"/>
             </h:panelGroup>
 
 

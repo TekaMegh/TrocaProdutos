@@ -28,6 +28,10 @@ public class ChatFachada {
     public void persist(Object object) {
         em.persist(object);
     }
+    
+    public void merge(Object object) {
+        em.merge(object);
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -67,6 +71,15 @@ public class ChatFachada {
             return 1;
         } else {
             return conversas.get(0).getId();
+        }
+    }
+    
+    public Integer getIdUltimaMensagem() {
+        List<Mensagem> mensagens = em.createNamedQuery("Mensagem.findDesc").getResultList();
+        if (mensagens.isEmpty()) {
+            return 1;
+        } else {
+            return mensagens.get(0).getId();
         }
     }
 }

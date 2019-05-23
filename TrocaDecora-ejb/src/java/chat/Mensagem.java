@@ -33,6 +33,7 @@ import usuario.Usuario;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Mensagem.findAll", query = "SELECT m FROM Mensagem m"),
+    @NamedQuery(name = "Mensagem.findDesc", query = "SELECT m FROM Mensagem m order by m.id desc"),
     @NamedQuery(name = "Mensagem.findById", query = "SELECT m FROM Mensagem m WHERE m.id = :id"),
     @NamedQuery(name = "Mensagem.findByTexto", query = "SELECT m FROM Mensagem m WHERE m.texto = :texto"),
     @NamedQuery(name = "Mensagem.findByDataEnvio", query = "SELECT m FROM Mensagem m WHERE m.dataEnvio = :dataEnvio")})
